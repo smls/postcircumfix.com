@@ -1,4 +1,13 @@
 # Dapper configuration file
 ---
-name : My Site
-
+name: Postcircumfix
+url: http://postcircumfix.com/
+source : _source/
+output : _output/
+layout : _layout/
+ignore :
+    - "^\."
+    - "^_"
+    - "^design$"
+    - "^README.md$"
+    - "^Makefile$"
