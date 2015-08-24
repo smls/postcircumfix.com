@@ -1,0 +1,7 @@
+---
+extension: .atom
+layout: atomfeed
+urlpattern: "/feed"
+feed:
+    id: "urn:uuid:60298beb-0f97-4ebb-95ad-d479a24dabaf"
+---

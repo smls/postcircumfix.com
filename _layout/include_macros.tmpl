@@ -1,0 +1,35 @@
+
+[%~ SET posts = site.pages.grep(->{ this.layout eq 'blogpost' })
+                          .sort(->{ this.date }) %]
+
+[%~ USE date(locale => 'en_US') ~%]
+
+[%~ MACRO prettydate(d) GET
+    d.defined ? date.format(d, format => '%b %e, %Y') : "unknown date" ~%]
+
+[%~ MACRO shortprettydate(d) GET
+    d.defined ? date.format(d, format => '%b %e') : "?" ~%]
+
+[%~ MACRO isodatetime(d) GET
+    d.defined ? date.format(d, format => '%Y-%m-%dT%H:%MZ')
+              : "0000-00-00T00:00Z" ~%]
+
+[%~ MACRO epoch(d) GET
+    d.defined ? date.format(d, format => '%s') : 0 ~%]
+
+[%~ MACRO year(d) GET
+    d.defined ? date.format(d, format => '%Y') : "-" ~%]
+
+[%~ MACRO maxdate(a, b) GET
+    epoch(a) >= epoch(b) ? a : b ~%]
+
+[%~ MACRO summarize(string) GET
+    string.replace(/(?sx: .* \K <!-- \s* cut \s* --> .+
+                        | .{200} .*? \b \K .+ )/, '&hellip;') %]
+
+[%~ MACRO basename(filename) GET
+    filename.remove(/^.*\//).remove(/\.[^.]+$/) ~%]
+
+[%~ MACRO permanent_post_id(post) GET
+  'tag:' ~ site.permanent_domain ~ ',' ~ post.year ~ ':' ~
+  '/posts/' ~ basename(post.filename) ~%]

@@ -1,0 +1,29 @@
+[%~ WRAPPER base.html ~%]
+[%~ PROCESS include_macros.tmpl ~%]
+
+<div class="content_wrapper">
+  <div class="content">
+    <h1>[% page.title %]</h1>
+    [%~ FOR post in posts.reverse ~%]
+    [%~ IF year != post.year ~%]
+    [%~ IF year.defined ~%]
+    </ul>
+    [%~ END -%]
+    [% SET year = post.year %]
+    <h2 id="[% year %]">[% year %]</h2>
+    <ul class="postslist">
+    [%- END -%]
+      <li>
+        <div class="byline">[% shortprettydate(post.date) %]</div>
+        <div class="posttitle"><a href="[% post.url %]">[% post.title %]</a></div>
+        <div class="commentcount"><a href="[% post.url %]#disqus_thread"
+           data-disqus-identifier="[% post.url %]"></a></div>
+      </li>
+    [%- END ~%]
+    </ul>
+  </div>
+</div>
+
+[%- INCLUDE include_disqus_commentcounts.html -%]
+
+[%~ END ~%]

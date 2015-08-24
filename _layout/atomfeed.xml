@@ -1,0 +1,38 @@
+[%~ PROCESS include_macros.tmpl ~%]
+[%~ SET pages = posts.reverse ~%]
+
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>[% page.feed.id %]</id>
+  <title>[% site.name %]</title>
+  <subtitle>[% site.subtitle %]</subtitle>
+  <link rel="self" href="[% site.url %][% page.url %]"/>
+  <link rel="alternate" href="[% site.url %]" type="text/html"/>
+  <updated>
+    [%~ SET postadded   = pages.first.date ~%]
+    [%~ SET postchanged = pages.sort(->{ this.updated }).reverse.first.updated ~%]
+    [%~ isodatetime(maxdate(postadded, postchanged)) ~%]
+  </updated>
+  <author>
+    <name>[% site.author.name %]</name>
+    <email>[% site.author.email %]</email>
+    <uri>[% site.author.url %]</uri>
+  </author>
+  
+  [%~ USE entries = Iterator(pages) -%]
+  [%~ FOR entry in entries %]
+  <entry>
+    <id>[% permanent_post_id(entry) %]</id>
+    <title>[% entry.title %]</title>
+    <link rel="alternate" href="[% site.url %][% entry.url %]" type="text/html"/>
+    <published>[% isodatetime(entry.date) %]</published>
+    <updated>  [% isodatetime(maxdate(entry.date, entry.updated)) %]</updated>
+    <summary type="html">[% summarize(entry.content) | xml %]</summary>
+    <content type="html">[% entry.content | xml %]</content>
+  </entry>
+  [%~ SET age = (epoch(date.now) - epoch(entry.date)) / (60 * 60 * 24) ~%]
+  [%~ IF entries.index >=  4 ~%] [%~ LAST IF age > 60 ~%] [%~ END ~%]
+  [%~ IF entries.index >= 10 ~%] [%~ LAST ~%]             [%~ END ~%]
+  [%~ END -%]
+
+</feed>

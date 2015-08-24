@@ -1,0 +1,184 @@
+/* Main layout */
+
+html, body { min-height:100%; padding:0; margin:0 }
+#body { position: absolute; top: 0; bottom: 0; left: 0; right: 0 }
+#layout_wrapper { display: table; width: 1100px; height: 100%; margin: auto }
+#header_wrapper, .content_wrapper, #footer_wrapper { display: table-row }
+#header, .content, #footer { display: table-cell }
+@media screen and (max-width: 1100px) {
+    #layout_wrapper { width: 100% }
+}
+
+/* Main layout elements */
+
+#layout_wrapper {
+    background: #100f0c;
+    border-spacing: 1px;
+    border-collapse: separate;
+    margin-top: -1px;
+}
+#header {
+    padding: 0 30px 12px 30px;
+    /* Background images based on patterns from subtlepatterns.com */
+    background: #36352f url('bgheader.jpg');
+    position: relative;
+    border: solid 1px #46443c;
+    border-top: none;
+    height: 4em;
+}
+
+.content {
+    background: #43423d url('bgbody.jpg');
+    padding: 35px 60px;
+    border: solid 1px #55544d;
+    position: relative;
+    z-index: 2;
+}
+
+#footer {
+    background: #36352f url('bgheader.jpg');
+    border: solid 1px #46443c;
+    color: #8a887e;
+    border-bottom: none;
+    vertical-align: middle;
+    padding: 0 60px;
+    height: 60px;
+}
+
+#logo {
+    margin: 0;
+    float: left;
+}
+#subtitle {
+    margin: 0;
+    position: absolute;
+    right: 60px;
+    bottom: 30px;
+    font-size: 1.6em;
+    font-style: italic;
+    line-height: 1;
+    color: #8a887e;
+}
+@media screen and (max-width: 710px) {
+    #logo {
+        width: 100%;
+        height: auto;
+        -ms-interpolation-mode: bicubic as
+    }
+    #subtitle {
+        position: static;
+        float: right;
+        margin-bottom: 18px;
+        margin-right: 30px;
+    }
+}
+
+/* Generic elements */
+
+html {
+    color: #dcdbd4;
+    background: #1f1e1b;
+    font-size: 1em;
+    font-family: 'Merriweather', serif;
+    line-height: 2.1;
+}
+
+h1:first-child, h2:first-child, p:first-child, pre:first-child { margin-top: 0 }
+h1:last-child, h2:last-child, p:last-child, pre:last-child { margin-bottom: 0 }
+
+h1, h2, h3, h4, h5 {
+    margin: 1.2em 0 1em 0;
+    line-height: 1.4em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+}
+h1 { font-size: 2.2em }
+h2 { font-size: 1.6em }
+h3 { font-size: 1.2em; font-weight: bold }
+h4 { font-size: 1.1em; font-style: italic }
+
+p, pre {
+    margin: 0 0 1em 0;
+}
+
+code, pre {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9em;
+}
+code, pre {
+    font-size: 0.9em;
+}
+
+a {
+    color: #AD8F5B;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+}
+a:hover, a:active {
+    color: #CDA663;
+    outline: none;
+}
+
+img { border: none }
+
+
+/* Special elements */
+
+.byline { color: #8a887e; float: left }
+.byline + h1 { margin-top: 2px; clear: both }
+h1 + .byline { position:relative; bottom: 1.8em; float: none }
+a.commentcount { float: right; color: #8a887e }
+a.commentcount:hover, a.commentcount:active { color: #CDA663 }
+
+ul.postslist { display: table; margin: 0; border-collapse: collapse }
+ul.postslist li { display: table-row }
+ul.postslist li::before { display: table-cell; padding: 0 0.5em 0 1.5em; content: "•" }
+ul.postslist div { display: table-cell; padding: 0 0.5em }
+ul.postslist div.byline    { float: none; white-space: nowrap }
+ul.postslist div.posttitle { width:100%; font-family: 'Raleway', sans-serif }
+ul.postslist div.commentcount { float: none; white-space: nowrap }
+@media screen and (max-width: 710px) {
+    ul.postslist .commentcount { display: none }
+}
+.commentcount a { color: #8a887e }
+.commentcount a:hover, .commentcount a:active { color: #CDA663 }
+
+a.more {
+    font-style: italic;
+    white-space: nowrap;
+}
+a.more::before {
+    content: "⏵ ";
+}
+
+.prevnext { padding-top: 18px; padding-bottom: 18px; }
+.prev {
+    float: left;
+    display: block;
+    margin-right: 1.5em;
+}
+.next {
+    float: right;
+    display: block;
+    text-align:right;
+    margin-left: 1.5em
+}
+.prev::before {
+    content: "⏴";
+    color: #8a887e;
+    padding-right: 0.4em;
+}
+.next::after {
+    content: "⏵";
+    color: #8a887e;
+    padding-left: 0.4em;
+}
+
+ul.navlinks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+ul.navlinks li { display: inline; margin-left: 1.5em }

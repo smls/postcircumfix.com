@@ -1,10 +1,18 @@
 # Dapper configuration file
 ---
 name: Postcircumfix
-url: http://postcircumfix.com/
-source : _source/
-output : _output/
-layout : _layout/
+subtitle: A Perl 6 blog by smls
+category: Perl 6
+url: http://postcircumfix.com
+permanent_domain: postcircumfix.com
+urlpattern: /:year-:month-:day-:slug
+author:
+    name:  smls
+    email: smls@postcircumfix.com
+    url:   http://smls.tk
+navlinks:
+    archive: /archive
+    feed:    /feed
 ignore :
     - "^\."
     - "^_"

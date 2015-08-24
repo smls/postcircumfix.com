@@ -1,7 +1,4 @@
 ---
 layout: index
-title: Welcome
+urlpattern: /
 ---
-
-Hello world.
-
