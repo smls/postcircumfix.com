@@ -4,6 +4,7 @@ name: Postcircumfix
 subtitle: A Perl 6 blog by smls
 category: Perl 6
 url: http://postcircumfix.com
+themecolor: '#2b2a25'
 permanent_domain: postcircumfix.com
 urlpattern: /:year-:month-:day-:slug
 author:
@@ -17,5 +18,6 @@ ignore :
     - "^\."
     - "^_"
     - "^design$"
+    - "^favicons$"
     - "^README.md$"
     - "^Makefile$"
