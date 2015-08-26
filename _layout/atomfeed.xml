@@ -27,7 +27,7 @@
     <link rel="alternate" href="[% site.url %][% entry.url %]" type="text/html"/>
     <published>[% isodatetime(entry.date) %]</published>
     <updated>  [% isodatetime(maxdate(entry.date, entry.updated)) %]</updated>
-    <summary type="html">[% summarize(entry.content) | xml %]</summary>
+    <summary type="html">[% extract_summary(entry.content) | xml %]</summary>
     <content type="html">[% entry.content | xml %]</content>
   </entry>
   [%~ SET age = (epoch(date.now) - epoch(entry.date)) / (60 * 60 * 24) ~%]

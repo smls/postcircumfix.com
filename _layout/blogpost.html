@@ -3,42 +3,33 @@
                          ~ " on " ~ prettydate(page.date) %]
 [%~ WRAPPER base.html ~%]
 
-<div class="content_wrapper">
-  <div class="content">
-    <div class="byline">[% prettydate(page.date) %]</div>
-    <h1>[% page.title %]</h1>
-    [% SET cut = summarize(page.content).length %]
-    [% page.content.substr(0, cut) ~%]
-    <a id="continue"></a>
-    [%~ page.content.substr(cut) %]
-  </div>
-</div>
+<article class="row">
+  <date class="byline">[% prettydate(page.date) %]</date>
+  <h1>[% page.title %]</h1>
+  [% mark_summary_end(page.content, '<a name="continue"></a>') ~%]
+</article>
 
-<div class="content_wrapper">
-  <div class="content prevnext">
-    [%~ USE posts = Iterator(posts) %]
-    [% FOR p in posts %]
-      [% IF p eq page %]
-        [% IF posts.prev.defined %]
-          <a  rel="prev" class="prev" href="[% posts.prev.url %]">
-            [%~ posts.prev.title ~%]
-          </a>
-        [% END %]
-        [% IF posts.next.defined %]
-          <a  rel="next" class="next" href="[% posts.next.url %]">
-            [%~ posts.next.title ~%]
-          </a>
-        [% END %]
+<nav class="row prevnext">
+  [%~ USE posts = Iterator(posts) %]
+  [% FOR p in posts %]
+    [% IF p eq page %]
+      [% IF posts.prev.defined %]
+        <a  rel="prev" class="prev" href="[% posts.prev.url %]">
+          [%~ posts.prev.title ~%]
+        </a>
+      [% END %]
+      [% IF posts.next.defined %]
+        <a  rel="next" class="next" href="[% posts.next.url %]">
+          [%~ posts.next.title ~%]
+        </a>
       [% END %]
     [% END %]
-  </div>
-</div>
+  [% END %]
+</nav>
 
-<div class="content_wrapper">
-  <div class="content comments">
-    <h2>Comments</h2>
-    [%- INCLUDE include_disqus_commentarea.html -%]
-  </div>
-</div>
+<section class="row">
+  <h2>Comments</h2>
+  [%- INCLUDE include_disqus_commentarea.html -%]
+</section>
 
 [%~ END ~%]

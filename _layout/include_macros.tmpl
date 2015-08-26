@@ -2,6 +2,7 @@
 [%~ SET posts = site.pages.grep(->{ this.layout eq 'blogpost' })
                           .sort(->{ this.date }) %]
 
+
 [%~ USE date(locale => 'en_US') ~%]
 
 [%~ MACRO prettydate(d) GET
@@ -23,9 +24,15 @@
 [%~ MACRO maxdate(a, b) GET
     epoch(a) >= epoch(b) ? a : b ~%]
 
-[%~ MACRO summarize(string) GET
-    string.replace(/(?sx: .* \K <!-- \s* cut \s* --> .+
-                        | .{200} .*? \b \K .+ )/, '&hellip;') %]
+
+[%~ MACRO extract_summary(string) GET
+    string.replace(/ ^ .* \K <!-- \s* cut \s* --> .+
+                   | ^ .{250} .*? \b \K .+ /sx, '&hellip;') %]
+
+[%~ MACRO mark_summary_end(string, marker) GET
+    string.replace(/ ^ .* \K <!-- \s* cut \s* -->
+                   | ^ .{250} .*? \b \K /sx, marker) %]
+
 
 [%~ MACRO basename(filename) GET
     filename.remove(/^.*\//).remove(/\.[^.]+$/) ~%]

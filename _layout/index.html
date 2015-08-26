@@ -4,37 +4,35 @@
 [%~ IF posts.size ~%]
 [%~ USE posts = Iterator(posts.reverse) ~%]
 [% FOR post in posts %]
-  <div class="content_wrapper">
-    <div class="content">
-    <a class="commentcount" href="[% post.url %]#disqus_thread"
-       data-disqus-identifier="[% post.url %]"></a>
-    <div class="byline">[% prettydate(post.date) %]</div>
-    <h1><a href="[% post.url %]">[% post.title %]</a></h1>
-    [% SET summary = summarize(post.content) %]
-    [% summary %]
-    [% IF summary.length ne post.content.length %]
-      <a class="more" href="[% post.url %]#continue">read on</a>
-    [% END %]
-    </div>
-  </div>
-  [%~ LAST IF posts.index >= 9 ~%]
+<article class="row">
+  <header>
+  <a class="commentcount" href="[% post.url %]#disqus_thread"
+     data-disqus-identifier="[% post.url %]"></a>
+  <date class="byline">[% prettydate(post.date) %]</date>
+  <h1><a href="[% post.url %]">[% post.title %]</a></h1>
+  </header>
+  [% SET summary = extract_summary(post.content) %]
+  [% summary %]
+  [% IF summary.length ne post.content.length %]
+    <a class="more" href="[% post.url %]#continue">read on</a>
+  [% END %]
+</article>
+[%~ LAST IF posts.index >= 9 ~%]
 [% END %]
 
 [%~ IF posts.index < posts.size ~%]
-  <div class="content_wrapper">
-    <div class="content">
-      <a class="more" href="/archive">Older posts</a>
-    </div>
-  </div>
+<nav class="row">
+  <a class="more" href="/archive">Older posts</a>
+</nav>
 [%~ END ~%]
 
 [%~ ELSE ~%]
 
-<div class="content_wrapper">
+<section>
   <div class="content">
     No posts here yet.
   </div>
-</div>
+</section>
 [%~ END ~%]
 
 [%- INCLUDE include_disqus_commentcounts.html -%]
