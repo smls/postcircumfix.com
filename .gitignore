@@ -1,4 +1,10 @@
+# Don't track generated files:
 /_output
 /media/*
+/*.png
+/*.ico
 !/media/_src
 !/media/_src/*
+
+# Don't track system-created files:
+*.directory
