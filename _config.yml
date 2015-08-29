@@ -17,7 +17,9 @@ navlinks:
 ignore :
     - "^\."
     - "^_"
-    - "^design$"
+    - "^.*/_"
     - "^favicons$"
     - "^README.md$"
     - "^Makefile$"
+revisions:
+    /style/site.css: 2

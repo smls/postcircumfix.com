@@ -97,16 +97,16 @@ article.row { flex: 1 0 auto }
   border: solid 1px #55544d;
   position: relative;
 }
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 header.row, footer.row {
   background: #36352f url('bgheader.jpg');
   border: solid 1px #46443c;
   color: #8a887e;
-}
-footer.row:after, header.row:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 header.row {
@@ -178,7 +178,7 @@ ul.postslist li::before { display: table-cell; padding: 0 0.5em 0 1.5em; content
 ul.postslist div { display: table-cell; padding: 0 0.5em }
 ul.postslist div.byline    { float: none; white-space: nowrap }
 ul.postslist div.posttitle { width:100%; font-family: 'Raleway', sans-serif }
-ul.postslist div.commentcount { float: none; white-space: nowrap }
+ul.postslist div.commentcount { float: none; text-align:right; white-space: nowrap }
 @media screen and (max-width: 710px) {
     ul.postslist .commentcount { display: none }
     ul.postslist, ul.postslist li, ul.postslist div { display: block; padding: 0 }
@@ -220,6 +220,16 @@ a.more::before {
     padding-left: 0.4em;
 }
 
+.figure { display: block; padding: 10px 0 }
+.figure img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+.figure:hover {
+    background: rgba(0,0,0, 0.14);
+}
 
 /* Footer elements */
 

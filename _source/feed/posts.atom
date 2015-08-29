@@ -3,5 +3,5 @@ extension: .atom
 layout: atomfeed
 urlpattern: "/feed"
 feed:
-    id: "urn:uuid:60298beb-0f97-4ebb-95ad-d479a24dabaf"
+    id: "urn:uuid:8f89109a-4d80-11e5-b0c9-f81a67074fc4"
 ---

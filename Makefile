@@ -3,9 +3,11 @@ OUTPUTDIR=$(BASEDIR)/_output
 
 build:
 	dapper build && sh $(OUTPUTDIR)/rename.sh
+	rm -r _output/*/_src
 
 publish: $(OUTPUTDIR)
-	rsync -avzhe ssh _output/ postcircumfix:~/postcircumfix.com/
+	rsync -avzh --delete _output/ postcircumfix:~/postcircumfix.com/
+	
 
 clean: 
 	rm -rf $(OUTPUTDIR)

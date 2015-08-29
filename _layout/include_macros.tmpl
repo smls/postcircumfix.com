@@ -40,3 +40,27 @@
 [%~ MACRO permanent_post_id(post) GET
   'tag:' ~ site.permanent_domain ~ ',' ~ post.year ~ ':' ~
   '/posts/' ~ basename(post.filename) ~%]
+
+[%~ MACRO bumpurl(url) GET
+    url ~ (site.revisions.$url.defined ?
+        '?' ~ site.revisions.$url : '')
+%]
+
+[%~ MACRO media_url(u) GET
+    u.match(/^[a-z]+?:/) ? u : bumpurl('/media/' ~ u)
+%]
+
+[%~ MACRO figure(h) GET
+    '<a class="figure" href="' ~ media_url(h.file) ~ '">' ~
+    '<img src="' ~ media_url(h.file) ~ '"' ~
+    
+    (h.width.defined ? ' width="' ~ h.width ~ '"' : '') ~
+    
+    (h.alt.defined ? ' alt="' ~ media_url(h.alt) ~ '"' : '') ~
+
+    (h.fallback.defined ?
+        " onerror=\"this.src='" ~ media_url(h.fallback) ~
+        "'; this.onerror=null;\"" : '') ~
+    
+    '></a>'
+%]

@@ -10,21 +10,21 @@
 </article>
 
 <nav class="row prevnext">
-  [%~ USE posts = Iterator(posts) %]
-  [% FOR p in posts %]
-    [% IF p eq page %]
-      [% IF posts.prev.defined %]
+  [% USE posts = Iterator(posts) %]
+  [%~ FOR p in posts ~%]
+    [%~ IF p eq page ~%]
+      [%~ IF posts.prev.defined -%]
         <a  rel="prev" class="prev" href="[% posts.prev.url %]">
           [%~ posts.prev.title ~%]
         </a>
-      [% END %]
-      [% IF posts.next.defined %]
+      [%- END ~%]
+      [%~ IF posts.next.defined -%]
         <a  rel="next" class="next" href="[% posts.next.url %]">
-          [%~ posts.next.title ~%]
+          [%- posts.next.title ~%]
         </a>
-      [% END %]
-    [% END %]
-  [% END %]
+      [%- END ~%]
+    [%~ END ~%]
+  [%~ END %]
 </nav>
 
 <section class="row">
