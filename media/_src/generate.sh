@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+cd "$(dirname "$(readlink -f $0 || realpath $0)")"
 source ../../style/_src/functions.sh
 
 svg_fix_fonts() {

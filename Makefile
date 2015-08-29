@@ -6,8 +6,8 @@ build:
 	rm -r _output/*/_src
 
 publish: $(OUTPUTDIR)
-	rsync -avzh --delete _output/ postcircumfix:~/postcircumfix.com/
-	
+	rsync --recursive --delete --filter='P *.*.gz' --checksum --compress --verbose --human-readable _output/ postcircumfix:~/postcircumfix.com/
+	ssh postcircumfix "/usr/local/bin/gzip_static_generate ~/postcircumfix.com/"
 
 clean: 
 	rm -rf $(OUTPUTDIR)
